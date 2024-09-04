@@ -1,6 +1,8 @@
 import React from 'react';
 import NavBar from '../navBar/NavBar';  // Ensure the path is correct
 import Slider from '../HeroSection/Slider/Slider';  // Ensure the path is correct
+import AllPlantsAndHerbs from '../HeroSection/AllPlantsAndHerbs/AllPlantsAndHerbs'; // Ensure the path is correct
+import SearchBox from '../SearchBox/SearchBox';
 
 const Home = () => {
     return (
@@ -28,6 +30,12 @@ const Home = () => {
                     </div>
                     {/* Add more categories as needed */}
                 </div>
+            </section>
+
+            {/* All Plants and Herbs Section */}
+            <section className="mt-16 px-4">
+                <h2 className="text-2xl font-semibold text-center mb-8">All Plants and Herbs</h2>
+                <AllPlantsAndHerbs />
             </section>
 
             {/* Testimonials Section */}
