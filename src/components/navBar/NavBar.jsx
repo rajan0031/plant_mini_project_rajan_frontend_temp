@@ -33,10 +33,10 @@ export default function NavBar() {
                     </button>
                 </div>
                 <div
-                    className={`flex-col md:flex-row md:flex md:space-x-8 ${isMenuOpen ? "flex" : "hidden"
+                    className={`flex-col md:flex-row md:flex md:space-x-8 md:items-center md:justify-between ${isMenuOpen ? "flex" : "hidden"
                         } md:flex`}
                 >
-                    <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0">
+                    <div className="flex flex-col md:flex-row items-center md:space-x-8">
                         <NavItem href="#" label="SERVICES" />
                         <NavItem href="#" label="PORTFOLIO" />
                         <NavItem href="#" label="OUR PROCESS" />
@@ -59,7 +59,10 @@ export default function NavBar() {
 
 function NavItem({ href, label }) {
     return (
-        <a href={href} className="text-white hover:text-gray-300 transition-colors duration-300">
+        <a
+            href={href}
+            className="text-white hover:text-gray-300 transition-colors duration-300"
+        >
             {label}
         </a>
     );
