@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Categories from "../category/Categories";
-import logo from "../../assets/logo.png";
-import logo2 from "../../assets/logo2.png"
+import Category2 from "../category-2/Category2";
+import logo2 from "../../assets/logo2.png";
 
 export default function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +12,7 @@ export default function NavBar() {
 
     return (
         <div>
+            {/* NavBar */}
             <div className="bg-green-800">
                 <div className="container mx-auto flex flex-col md:flex-row items-center justify-between py-4">
                     <div className="flex items-center justify-between w-full md:w-auto">
@@ -64,7 +65,16 @@ export default function NavBar() {
                     </div>
                 </div>
             </div>
-            <Categories className="bg-green-900 text-white py-4" />
+
+            {/* Categories */}
+            <div className="bg-green-900 text-white py-4">
+                <Categories />
+            </div>
+
+            {/* Category2 */}
+            <div className="bg-green-700 text-white py-4">
+                <Category2 />
+            </div>
         </div>
     );
 }
