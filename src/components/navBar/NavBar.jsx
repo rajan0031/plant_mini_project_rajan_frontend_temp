@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Categories from "../category/Categories";
+import logo from "../../assets/logo.png";
+import logo2 from "../../assets/logo2.png"
 
 export default function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,51 +11,60 @@ export default function NavBar() {
     };
 
     return (
-        <div className="bg-green-800">
-            <div className="container mx-auto flex flex-col md:flex-row items-center justify-between py-4">
-                <div className="flex items-center justify-between w-full md:w-auto">
-                    <img src="/placeholder.svg" alt="Logo" className="h-12" />
-                    <button
-                        onClick={toggleMenu}
-                        className="text-white md:hidden focus:outline-none"
-                        aria-label="Toggle Menu"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
+        <div>
+            <div className="bg-green-800">
+                <div className="container mx-auto flex flex-col md:flex-row items-center justify-between py-4">
+                    <div className="flex items-center justify-between w-full md:w-auto">
+                        <div className="flex items-center justify-center">
+                            <img
+                                src={logo2}
+                                alt="Logo"
+                                className="h-12 md:h-16 lg:h-20 object-contain transition-transform transform hover:scale-105 hover:rotate-3"
+                            />
+                        </div>
+                        <button
+                            onClick={toggleMenu}
+                            className="text-white md:hidden focus:outline-none"
+                            aria-label="Toggle Menu"
                         >
-                            <path d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-                <div
-                    className={`flex-col md:flex-row md:flex md:space-x-8 md:items-center md:justify-between ${isMenuOpen ? "flex" : "hidden"
-                        } md:flex`}
-                >
-                    <div className="flex flex-col md:flex-row items-center md:space-x-8">
-                        <NavItem href="#" label="SERVICES" />
-                        <NavItem href="#" label="PORTFOLIO" />
-                        <NavItem href="#" label="OUR PROCESS" />
-                        <NavItem href="#" label="ABOUT" />
-                        <NavItem href="#" label="CONTACT US" />
-                        <NavItem href="#" label="BLOG" />
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            >
+                                <path d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div
+                        className={`flex-col md:flex-row md:flex md:space-x-8 md:items-center md:justify-between ${isMenuOpen ? "flex" : "hidden"
+                            } md:flex`}
+                    >
+                        <div className="flex flex-col md:flex-row items-center md:space-x-8">
+                            <NavItem href="#" label="SERVICES" />
+                            <NavItem href="#" label="PORTFOLIO" />
+                            <NavItem href="#" label="OUR PROCESS" />
+                            <NavItem href="#" label="ABOUT" />
+                            <NavItem href="#" label="CONTACT US" />
+                            <NavItem href="#" label="BLOG" />
+                        </div>
+                    </div>
+                    <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 mt-4 md:mt-0">
+                        <PhoneIcon className="text-white h-6 w-6" />
+                        <span className="text-white">303.800.7575</span>
+                        <button className="bg-green-500 text-white px-4 py-2 rounded">
+                            SCHEDULE AN ESTIMATE
+                        </button>
                     </div>
                 </div>
-                <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 mt-4 md:mt-0">
-                    <PhoneIcon className="text-white h-6 w-6" />
-                    <span className="text-white">303.800.7575</span>
-                    <button className="bg-green-500 text-white px-4 py-2 rounded">
-                        SCHEDULE AN ESTIMATE
-                    </button>
-                </div>
             </div>
+            <Categories className="bg-green-900 text-white py-4" />
         </div>
     );
 }
