@@ -17,7 +17,7 @@ const Slider = () => {
         Slider03,
         Slider05,
         Slider06,
-        Slider07,
+        Slider07
     ];
 
     useEffect(() => {
