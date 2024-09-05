@@ -5,6 +5,8 @@ import Slider02 from "../../../assets/sliderImages/slider02.jpg";
 import Slider03 from "../../../assets/sliderImages/slider03.png";
 import Slider05 from "../../../assets/sliderImages/slider05.webp";
 import Slider06 from "../../../assets/sliderImages/slider06.jpg";
+import Slider07 from "../../../assets/sliderImages/slider07.jpg";
+// import Sli
 
 const Slider = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,6 +17,7 @@ const Slider = () => {
         Slider03,
         Slider05,
         Slider06,
+        Slider07,
     ];
 
     useEffect(() => {
