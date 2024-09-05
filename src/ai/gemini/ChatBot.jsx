@@ -93,6 +93,36 @@ Include any historical or cultural significance related to the plant or herb.
 🕰️ Describe its role in history, religious connections, or famous stories associated with it.
 📚 Use engaging symbols and fonts for a captivating presentation.
 
+🌾 Soil Requirements:
+Provide the ideal soil conditions for growing the plant or herb. 🧱 Mention the type of soil (e.g., loamy, sandy, clay). 💧 Include water retention, pH levels, and nutrient content. 🌍 Use environmental symbols and descriptive fonts.
+
+🌞 Sunlight Needs:
+Specify how much sunlight the plant or herb needs for optimal growth. 🌞 Mention whether it prefers full sun, partial shade, or full shade. 🌦️ Include any seasonal sunlight needs. 🌻 Use vibrant fonts and sun-related emojis.
+
+💧 Watering Needs:
+Detail the plant or herb's watering schedule. 💦 Include frequency (e.g., daily, weekly) and amount of water needed. 💧 Mention any specific irrigation techniques (e.g., drip, mist). 🌊 Use water-related icons and fonts for emphasis.
+
+🌡️ Ideal Temperature Range:
+Specify the temperature range that the plant or herb thrives in. 🌡️ Include optimal temperatures for growth and flowering. ❄️ Mention if it’s frost-tolerant or requires protection in winter. 🔥 Use temperature symbols and engaging fonts.
+
+🌬️ Air Quality and Humidity:
+Describe the air quality and humidity levels that the plant or herb prefers. 💨 Include preferences for air circulation or stagnant air. 💧 Mention whether it needs high, medium, or low humidity. 🌬️ Use relevant fonts and air or water vapor emojis.
+
+🍃 Leaf Characteristics:
+Detail the visual and structural characteristics of the plant's leaves. 🍂 Include shape, size, texture, and color. 🌿 Describe any notable features, such as variegation or fragrance. 🌱 Use leaf-related emojis and stylish fonts.
+
+🌸 Flowering Season and Color:
+Provide details about the plant or herb's flowering season. 🌸 Mention when it blooms and for how long. 🎨 Include the color(s) and type of flowers it produces. 🌼 Use flower-related icons and colorful fonts.
+
+🌾 Growth Habits and Size:
+Describe the growth habits of the plant or herb (e.g., sprawling, upright). 📏 Mention its average height and width. 🌿 Include details like growth speed and spreading patterns. 🌱 Use growth-related symbols and readable fonts.
+
+🦋 Attracts Wildlife:
+Mention any wildlife or beneficial insects that the plant or herb attracts. 🦋 Include details like pollinators (e.g., bees, butterflies) or birds. 🐝 Mention whether it supports biodiversity or is part of a specific ecosystem. 🌸 Use wildlife emojis and nature-themed fonts.
+
+🍂 Seasonal Care and Maintenance:
+Detail the seasonal care requirements for the plant or herb. 🍁 Mention tasks like pruning, mulching, or fertilizing. ❄️ Include tips for winterizing or preparing for dormancy. 🌾 Use nature and season-related icons, along with well-structured fonts.
+
 
 `;
                 const result = await model.generateContent(prompt);
@@ -122,7 +152,7 @@ Include any historical or cultural significance related to the plant or herb.
         // Call the async functions if there is a submitted query
         if (submittedQuery) {
             generateContent();
-            generateImageFromText(submittedQuery); // Generate image based on the submitted query
+            generateImageFromText(`$please generate a image of the {submittedQuery} and it must be a realistic image`); // Generate image based on the submitted query
         }
     }, [submittedQuery]);
 
@@ -161,7 +191,7 @@ Include any historical or cultural significance related to the plant or herb.
                         </div>
 
                         {/* Display the generated image if available */}
-                        {!imageUrl ? <div><img src={loading} alt="" /></div> : (
+                        {!imageUrl ? "" : (
                             <div className="mt-6 text-center">
                                 <img
                                     src={imageUrl}
