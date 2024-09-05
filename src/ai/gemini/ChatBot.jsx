@@ -58,42 +58,56 @@ const ChatBot = () => {
     }, [submittedQuery]);
 
     return (
-        <div className="flex flex-col max-w-md mx-auto mt-10 h-[80vh] bg-gradient-to-b from-green-200 to-green-400 border rounded-lg overflow-hidden shadow-lg">
-            <div className="flex-1 p-4 overflow-y-auto">
-                {/* Chat Messages */}
-                <div className="flex flex-col space-y-4">
-                    {submittedQuery && (
-                        <div className="flex items-start space-x-2">
-                            <div className="bg-green-600 text-white p-3 rounded-lg max-w-xs">
-                                <p className="whitespace-pre-wrap text-lg">{submittedQuery}</p>
-                            </div>
-                        </div>
-                    )}
-                    {generetedOutput == false ? <img src={loading} alt="" /> : (
-                        <div className="flex items-start space-x-2">
-                            <div className="bg-green-200 text-black p-3 rounded-lg max-w-xs">
-                                <p className="whitespace-pre-wrap text-lg">{generetedOutput}</p>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            </div>
-            <div className="flex items-center border-t border-gray-300 p-4 bg-green-100">
+        <div className="max-w-4xl mx-auto mt-10">
+            {/* Search Box */}
+            <div className="w-full p-4 bg-green-100 rounded-lg shadow-md">
                 <input
                     type="text"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Type your query here..."
-                    className="flex-1 p-2 border-none outline-none rounded-lg text-lg bg-white text-gray-700 placeholder-gray-500"
+                    placeholder="Search for information..."
+                    className="w-full p-3 border border-gray-300 rounded-lg text-lg text-gray-700 placeholder-gray-500 focus:outline-none focus:border-green-500"
                 />
                 <button
                     onClick={handleSearch}
-                    className="ml-2 p-2 bg-green-500 text-white hover:bg-green-600 rounded-lg"
+                    className="mt-4 w-full p-3 bg-green-500 text-white hover:bg-green-600 rounded-lg transition"
                 >
-                    <FaSearch size={20} />
+                    <FaSearch size={20} className="inline-block mr-2" /> Search
                 </button>
             </div>
+
+            {/* Generated Content */}
+            <div className="mt-10 p-6 bg-white rounded-lg shadow-lg">
+                {generetedOutput === false ? (
+                    <div className="text-center">
+                        <img src={loading} alt="Loading..." className="mx-auto" />
+                    </div>
+                ) : (
+                    <div className="space-y-6">
+                        <div className="text-gray-900 text-lg bg-gray-50 p-6 rounded-lg leading-relaxed border border-gray-200 shadow-sm">
+                            <h2 className="text-2xl font-semibold text-green-700 mb-4">Generated Content</h2>
+                            <div className="text-lg text-gray-700 whitespace-pre-wrap">
+                                {generetedOutput}
+                            </div>
+                        </div>
+
+                        {/* Example of using cards for content sections */}
+                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                            <div className="bg-green-100 p-5 rounded-lg shadow-md">
+                                <h3 className="text-xl font-bold text-green-800 mb-2">Subheading 1</h3>
+                                <p className="text-gray-700">Additional information or details related to the generated content can be styled in these sections to make it visually appealing and structured.</p>
+                            </div>
+                            <div className="bg-green-100 p-5 rounded-lg shadow-md">
+                                <h3 className="text-xl font-bold text-green-800 mb-2">Subheading 2</h3>
+                                <p className="text-gray-700">You can even break down different aspects of the output into separate, neatly decorated cards or sections.</p>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+
         </div>
+
     );
 };
 
