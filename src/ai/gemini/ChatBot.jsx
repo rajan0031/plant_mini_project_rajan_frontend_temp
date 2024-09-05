@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa'; // Importing the search icon from react-icons
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import loading from "../../assets/loading/loding.gif"
+import loading from "../../assets/loading/loding.gif";
+import axios from 'axios';
 
 // Initialize the GoogleGenerativeAI instance with your API key
 const genAI = new GoogleGenerativeAI("AIzaSyDY1HOBzIU-TBsh_uHv9IwoxzvDmTRxuho");
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
+const apiConfig = {
+    method: 'POST',
+    url: 'https://ai-text-to-image-generator-api.p.rapidapi.com/realistic',
+    headers: {
+        'x-rapidapi-key': "d099061082mshaa9484e68b47a41p10abe4jsn5eb181d0e1c9",
+        'x-rapidapi-host': 'ai-text-to-image-generator-api.p.rapidapi.com',
+        'Content-Type': 'application/json'
+    },
+};
+
 const ChatBot = () => {
     const [query, setQuery] = useState('');
     const [submittedQuery, setSubmittedQuery] = useState('say the plant name');
-    const [generetedOutput, setGeneratedOutput] = useState('enter the plant name');
+    const [generatedOutput, setGeneratedOutput] = useState('enter the plant name');
+    const [imageUrl, setImageUrl] = useState(null); // For storing generated image URL
 
     const handleSearch = () => {
         setSubmittedQuery(query);
@@ -28,7 +40,8 @@ const ChatBot = () => {
                 console.log("Generating content for:", submittedQuery);
                 const prompt = `${submittedQuery}
                 give ans like 
-                Generate text with headings and content where each heading is bold and in uppercase, with a larger font size than the content. Highlight the headings by using asterisks around them (e.g., HEADING). The content should be in a normal font size, smaller than the headings, and presented in a clear, readable format
+
+                Generate text with headings and content where each heading is bold and in uppercase, with a larger font size than the content. Highlight the headings by using asterisks around them (e.g., HEADING). The content should be in a normal font size, smaller than the headings, and presented in a clear, readable format,use more and more emojies and symbols for the better user intractions
                 
 🌟 Local Name(s):
 List all the common names for the plant or herb used in different regions or cultures.
@@ -92,9 +105,24 @@ Include any historical or cultural significance related to the plant or herb.
             }
         }
 
-        // Call the async function if there is a submitted query
+        async function generateImageFromText(text) {
+            try {
+                const response = await axios.request({
+                    ...apiConfig,
+                    data: { inputs: text }
+                });
+                const imageUrl = response.data.url;
+                setImageUrl(imageUrl);
+                console.log("Generated image URL:", imageUrl);
+            } catch (error) {
+                console.error("Error generating image:", error);
+            }
+        }
+
+        // Call the async functions if there is a submitted query
         if (submittedQuery) {
             generateContent();
+            generateImageFromText(submittedQuery); // Generate image based on the submitted query
         }
     }, [submittedQuery]);
 
@@ -106,7 +134,7 @@ Include any historical or cultural significance related to the plant or herb.
                     type="text"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Search for a plat or herbs"
+                    placeholder="Search for a plant or herb"
                     className="w-full p-3 border border-gray-300 rounded-lg text-lg text-gray-700 placeholder-gray-500 focus:outline-none focus:border-green-500"
                 />
                 <button
@@ -119,7 +147,7 @@ Include any historical or cultural significance related to the plant or herb.
 
             {/* Generated Content */}
             <div className="mt-10 p-6 bg-white rounded-lg shadow-lg">
-                {generetedOutput === false ? (
+                {generatedOutput === false ? (
                     <div className="text-center">
                         <img src={loading} alt="Loading..." className="mx-auto" />
                     </div>
@@ -128,27 +156,24 @@ Include any historical or cultural significance related to the plant or herb.
                         <div className="text-gray-900 text-lg bg-gray-50 p-6 rounded-lg leading-relaxed border border-gray-200 shadow-sm">
                             <h2 className="text-2xl font-semibold text-green-700 mb-4"></h2>
                             <div className="text-lg text-gray-700 whitespace-pre-wrap">
-                                {generetedOutput}
+                                {generatedOutput}
                             </div>
                         </div>
 
-                        {/* Example of using cards for content sections */}
-                        {/* <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                            <div className="bg-green-100 p-5 rounded-lg shadow-md">
-                                <h3 className="text-xl font-bold text-green-800 mb-2">Subheading 1</h3>
-                                <p className="text-gray-700">Additional information or details related to the generated content can be styled in these sections to make it visually appealing and structured.</p>
+                        {/* Display the generated image if available */}
+                        {!imageUrl ? <div><img src={loading} alt="" /></div> : (
+                            <div className="mt-6 text-center">
+                                <img
+                                    src={imageUrl}
+                                    alt="Generated from query"
+                                    className="rounded-lg shadow-lg max-w-full"
+                                />
                             </div>
-                            <div className="bg-green-100 p-5 rounded-lg shadow-md">
-                                <h3 className="text-xl font-bold text-green-800 mb-2">Subheading 2</h3>
-                                <p className="text-gray-700">You can even break down different aspects of the output into separate, neatly decorated cards or sections.</p>
-                            </div>
-                        </div> */}
+                        )}
                     </div>
                 )}
             </div>
-
         </div>
-
     );
 };
 
