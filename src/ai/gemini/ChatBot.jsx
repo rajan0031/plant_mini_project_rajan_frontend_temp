@@ -39,6 +39,10 @@ const ChatBot = () => {
             try {
                 console.log("Generating content for:", submittedQuery);
                 const prompt = `${submittedQuery}
+
+              if(${submittedQuery} is a plat or herbs name ) then only give the ans as mentioned below 
+              else -> just write the plant / herbs does not exist 
+
                 give ans like 
 
                 Generate text with headings and content where each heading is bold and in uppercase, with a larger font size than the content. Highlight the headings by using asterisks around them (e.g., HEADING). The content should be in a normal font size, smaller than the headings, and presented in a clear, readable format,use more and more emojies and symbols for the better user intractions
