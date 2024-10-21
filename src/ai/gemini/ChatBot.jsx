@@ -40,7 +40,7 @@ const ChatBot = () => {
                 console.log("Generating content for:", submittedQuery);
                 const prompt = `${submittedQuery}
 
-              if(${submittedQuery} is a plat or herbs name ) then only give the ans as mentioned below 
+              if(${submittedQuery} is a plant or herbs name ) then only give the ans as mentioned below 
               else -> just write the plant / herbs does not exist 
 
                 give ans like 
